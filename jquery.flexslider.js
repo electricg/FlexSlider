@@ -140,7 +140,9 @@
           slider.currentItem = slider.currentSlide;
           slider.slides.removeClass(namespace + "active-slide").eq(slider.currentItem).addClass(namespace + "active-slide");
           slider.slides.click(function(e){
-            e.preventDefault();
+            if (!vars.activateLink) {
+              e.preventDefault();
+            }
             var $slide = $(this),
                 target = $slide.index();
             if (!$(vars.asNavFor).data('flexslider').animating && !$slide.hasClass('active')) {
@@ -866,6 +868,9 @@
     end: function(){},              //Callback: function(slider) - Fires when the slider reaches the last slide (asynchronous)
     added: function(){},            //{NEW} Callback: function(slider) - Fires after a slide is added
     removed: function(){}           //{NEW} Callback: function(slider) - Fires after a slide is removed
+
+    // Giulia Alfonsi @electric_g mod
+    ,activateLink: false            //Activate real links inside slides
   }
 
 
